@@ -1,0 +1,196 @@
+--MUY FACIL
+	--Devuelve todas las peliculas
+		--SELECT * FROM movies;
+	--Devuelve todos los generos existentes
+		--SELECT * FROM genres;
+	--Devuelve la lista de todos los estudios de grabación que estén activos
+		--SELECT * FROM studios WHERE STUDIO_ACTIVE = 1;
+	--Devuelve una lista de los 20 ultimos miembros 
+		--SELECT * FROM members
+		--ORDER BY MEMBER_DISCHARGE_DATE DESC
+		--LIMIT 20;
+
+--FACIL
+	--Devuelve las 20 duraciones de películas más frecuentes, ordenados de mayor a menor
+--		SELECT MOVIE_DURATION, COUNT(*) AS frequency
+--		FROM movies
+--		GROUP BY MOVIE_DURATION
+--		ORDER BY frequency DESC
+--		LIMIT 20;
+	--Devuelve las películas del año 2000 en adelante que empiecen por la letra A
+--		SELECT * FROM movies
+--		WHERE MOVIE_LAUNCH_DATE >= '2000-01-01'
+--		AND MOVIE_NAME LIKE 'A%';
+	-- Devuelve los actores nacidos cualquier mes que no sea Junio y que sigan vivos
+		--SELECT * FROM actors
+		--WHERE MONTH(ACTOR_BIRTH_DATE) != 6
+		--AND ACTOR_DEAD_DATE IS NULL;
+	-- Devuelve el nombre y la edad de todos los directores menores o iguales de 50 años que estén vivos
+		--SELECT DIRECTOR_NAME, 
+		--YEAR(CURRENT_DATE) - YEAR(DIRECTOR_BIRTH_DATE) AS age
+		--FROM directors
+		--WHERE YEAR(CURRENT_DATE) - YEAR(DIRECTOR_BIRTH_DATE) <= 50
+		--AND DIRECTOR_DEAD_DATE IS NULL;
+	--Devuelve el nombre y la edad de todos los actores menores de 50 años que hayan fallecido
+		--SELECT ACTOR_NAME, 
+		--       YEAR(ACTOR_DEAD_DATE) - YEAR(ACTOR_BIRTH_DATE) AS age
+		--FROM actors
+		--WHERE YEAR(ACTOR_DEAD_DATE) - YEAR(ACTOR_BIRTH_DATE) < 50
+		--AND ACTOR_DEAD_DATE IS NOT NULL;
+	-- Devuelve el nombre de todos los directores menores o iguales de 40 años que estén vivos
+		--SELECT DIRECTOR_NAME
+		--FROM directors
+		--WHERE YEAR(CURRENT_DATE) - YEAR(DIRECTOR_BIRTH_DATE) <= 40
+		--AND DIRECTOR_DEAD_DATE IS NULL;
+	-- Indica la edad media de los directores vivos
+		--SELECT AVG(YEAR(CURRENT_DATE) - YEAR(DIRECTOR_BIRTH_DATE)) AS avg_age
+		--FROM directors
+		--WHERE DIRECTOR_DEAD_DATE IS NULL;
+	-- Indica la edad media de los actores que han fallecido
+		--SELECT AVG(YEAR(ACTOR_DEAD_DATE) - YEAR(ACTOR_BIRTH_DATE)) AS avg_age
+		--FROM actors
+		--WHERE ACTOR_DEAD_DATE IS NOT NULL;
+-- MEDIA
+	-- Devuelve el nombre de todas las películas y el nombre del estudio que las ha realizado
+		--SELECT MOVIE_NAME, STUDIO_NAME
+		--FROM movies
+		--JOIN studios ON movies.STUDIO_ID = studios.STUDIO_ID;
+	-- Devuelve los miembros que alquilaron al menos una película entre el año 2010 y el 2015
+--		SELECT DISTINCT members.*
+--		FROM members
+--		JOIN members_movie_rental ON members_movie_rental.member_movie_rental_id = members.member_id
+--		WHERE YEAR(members_movie_rental.member_rental_date) BETWEEN 2010 AND 2015
+	-- Devuelve cuantas películas hay de cada país
+--		SELECT NATIONALITY_NAME, COUNT(*) AS movie_count
+--		FROM movies
+--		JOIN nationalities ON movies.NATIONALITY_ID = nationalities.NATIONALITY_ID
+--		GROUP BY NATIONALITY_NAME;
+	-- Devuelve todas las películas que hay de género documental
+--		SELECT movie_name FROM movies
+--		JOIN genres ON movies.genre_id = genres.genre_id
+--		WHERE genres.genre_name = 'Documentary'
+	-- Devuelve cuantas películas hay de cada país
+--		SELECT NATIONALITY_NAME, COUNT(*) AS movie_count
+--		FROM movies
+--		JOIN nationalities ON movies.nationality_id = nationalities.nationality_id
+--		GROUP BY NATIONALITY_NAME
+--		ORDER BY MOVIE_COUNT DESC
+	-- Devuelve todas las películas creadas por directores nacidos a partir de 1980 y que todavía están vivos 
+--		SELECT MOVIE_NAME
+--		FROM movies
+--		JOIN directors ON movies.DIRECTOR_ID = directors.DIRECTOR_ID
+--		WHERE YEAR(DIRECTOR_BIRTH_DATE) >= 1980
+--		AND DIRECTOR_DEAD_DATE IS NULL;
+	--Indica si hay alguna coincidencia de nacimiento de ciudad entre los miembros del videoclub y los directores
+--		SELECT DISTINCT members.MEMBER_TOWN
+--		FROM members
+--		JOIN directors ON members.MEMBER_TOWN = directors.DIRECTOR_BIRTH_PLACE;
+	--Devuelve el nombre y el año de todas las películas que han sido producidas por un estudio que actualmente no esté activo 
+--		SELECT MOVIE_NAME, YEAR(MOVIE_LAUNCH_DATE)
+--		FROM movies
+--		JOIN studios ON movies.STUDIO_ID = studios.STUDIO_ID
+--		WHERE studios.STUDIO_ACTIVE = 0;
+	--Devuelve el nombre y el año de todas las películas que han sido producidas por un estudio que actualmente no esté activo
+		--SELECT MOVIE_NAME, YEAR(MOVIE_LAUNCH_DATE)
+		--FROM movies
+		--JOIN studios ON movies.STUDIO_ID = studios.STUDIO_ID
+		--WHERE studios.STUDIO_ACTIVE = 0;
+	--Devuelve una lista de las últimas 10 películas que se han alquilado
+--		SELECT movie_name FROM movies
+--		JOIN members_movie_rental ON movies.movie_id = members_movie_rental.MOVIE_ID
+--		ORDER BY member_rental_date DESC 
+--		LIMIT 10;
+	--Indica cuántas películas ha realizado cada director antes de cumplir 41 años
+		--SELECT DIRECTOR_NAME, COUNT(*) AS movie_count
+		--FROM movies
+		--JOIN directors ON movies.DIRECTOR_ID = directors.DIRECTOR_ID
+		--WHERE YEAR(MOVIE_LAUNCH_DATE) - YEAR(DIRECTOR_BIRTH_DATE) < 41
+		--GROUP BY DIRECTOR_NAME
+		--ORDER BY movie_count DESC;	
+	--Indica cuál es la media de duración de las películas de cada director
+--		SELECT director_name, AVG(movie_duration) AS avg_duration 
+--		FROM movies
+--		JOIN directors ON movies.director_id = directors.director_id
+--		GROUP BY director_name
+	--Indica cuál es el nombre y la duración mínima de la película que ha sido alquilada en los últimos 2 años
+--		SELECT MOVIE_NAME, MIN(MOVIE_DURATION) AS min_duration
+--		FROM movies
+--		JOIN member_movie_rentals ON movies.MOVIE_ID = member_movie_rentals.MOVIE_ID
+--		WHERE MEMBER_RENTAL_DATE BETWEEN '2017-01-25' AND '2019-01-25';
+	-- Indica el número de películas que hayan hecho los directores durante las décadas de los 60, 70 y 80 que contengan la palabra "The" 
+--		SELECT COUNT(*) AS movie_count
+--		FROM movies
+--		JOIN directors ON movies.DIRECTOR_ID = directors.DIRECTOR_ID
+--		WHERE MOVIE_NAME LIKE '%The%'
+--		AND YEAR(MOVIE_LAUNCH_DATE) BETWEEN 1960 AND 1989;
+-- DIFICIL
+	-- Lista nombre, nacionalidad y director de todas las películas
+--		SELECT MOVIE_NAME, NATIONALITY_NAME, DIRECTOR_NAME
+--		FROM movies
+--		JOIN nationalities ON movies.NATIONALITY_ID = nationalities.NATIONALITY_ID
+--		JOIN directors ON movies.DIRECTOR_ID = directors.DIRECTOR_ID;
+	-- Muestra las películas con los actores que han participado en cada una de ellas
+		--SELECT MOVIE_NAME, ACTOR_NAME
+		--FROM movies
+		--JOIN movies_actors ON movies.MOVIE_ID = movies_actors.MOVIE_ID
+		--JOIN actors ON movies_actors.ACTOR_ID = actors.ACTOR_ID;
+	--Indica cual es el nombre del director del que más películas se han alquilado
+--		SELECT DIRECTOR_NAME, COUNT(*) AS rent_count
+--		FROM movies
+--		JOIN members_movie_rental ON movies.MOVIE_ID = members_movie_rental.MOVIE_ID
+--		JOIN directors ON movies.DIRECTOR_ID = directors.DIRECTOR_ID
+--		GROUP BY DIRECTOR_NAME
+--		ORDER BY rent_count DESC
+--		LIMIT 1;
+	--Indica cuantos premios han ganado cada uno de los estudios con las películas que han creado
+--		SELECT STUDIO_NAME, SUM(AWARD_WIN) AS total_awards
+--		FROM movies
+--		JOIN studios ON movies.STUDIO_ID = studios.STUDIO_ID
+--		JOIN awards ON movies.MOVIE_ID = awards.MOVIE_ID
+--		GROUP BY STUDIO_NAME;
+	--Indica el número de premios a los que estuvo nominado un actor, pero que no ha conseguido
+--		SELECT ACTOR_NAME, SUM(AWARD_NOMINATION - AWARD_WIN) AS lost_awards
+--		FROM actors
+--		JOIN movies_actors ON actors.ACTOR_ID = movies_actors.ACTOR_ID
+--		JOIN awards ON movies_actors.MOVIE_ID = awards.MOVIE_ID
+--		GROUP BY ACTOR_NAME;
+	-- Indica el nombre, ciudad, y teléfono de todos los miembros del videoclub que hayan alquilado películas que hayan sido nominadas a más de 150 premios y ganaran menos de 50
+--		SELECT MEMBER_NAME, MEMBER_TOWN, MEMBER_PHONE
+--		FROM members
+--		JOIN members_movie_rental ON members.MEMBER_ID = members_movie_rental.MEMBER_ID
+--		JOIN awards ON members_movie_rental.MOVIE_ID = awards.MOVIE_ID
+--		WHERE AWARD_NOMINATION > 150 AND AWARD_WIN < 50;
+	-- Comprueba si hay errores en la BD entre las películas y directores 
+--		SELECT m.MOVIE_NAME, d.DIRECTOR_NAME, d.DIRECTOR_DEAD_DATE, m.MOVIE_LAUNCH_DATE
+--		FROM movies m
+--		JOIN directors d ON m.DIRECTOR_ID = d.DIRECTOR_ID
+--		WHERE d.DIRECTOR_DEAD_DATE IS NOT NULL 
+--		  AND m.MOVIE_LAUNCH_DATE > d.DIRECTOR_DEAD_DATE;
+	-- Utilizando la información de la sentencia anterior, modifica la fecha de defunción a un año más tarde del estreno de la película
+--		UPDATE directors
+--		SET DIRECTOR_DEAD_DATE = DATE_ADD((SELECT MOVIE_LAUNCH_DATE FROM movies WHERE movies.DIRECTOR_ID = directors.DIRECTOR_ID), INTERVAL 1 YEAR)
+--		WHERE DIRECTOR_DEAD_DATE < (SELECT MOVIE_LAUNCH_DATE FROM movies WHERE movies.DIRECTOR_ID = directors.DIRECTOR_ID);
+-- BERSERK
+	-- Indica cuál es el género favorito de cada uno de los directores cuando dirigen una película
+	--		SELECT DIRECTOR_NAME, GENRE_NAME, COUNT(*) AS movie_count
+	--		FROM movies
+	--		JOIN genres ON movies.GENRE_ID = genres.GENRE_ID
+	--		JOIN directors ON movies.DIRECTOR_ID = directors.DIRECTOR_ID
+	--		GROUP BY DIRECTOR_NAME, GENRE_NAME
+	--		ORDER BY movie_count DESC;
+	-- Indica cuál es la nacionalidad favorita de cada uno de los estudios en la producción de las películas
+--		SELECT STUDIO_NAME, NATIONALITY_NAME, COUNT(*) AS movie_count
+--		FROM movies
+--		JOIN nationalities ON movies.NATIONALITY_ID = nationalities.NATIONALITY_ID
+--		JOIN studios ON movies.STUDIO_ID = studios.STUDIO_ID
+--		GROUP BY STUDIO_NAME, NATIONALITY_NAME
+--		ORDER BY movie_count DESC;
+--	 
+	--  Indica cuál fue la primera película que alquilaron los miembros del videoclub cuyos teléfonos tengan como último dígito el ID de alguna nacionalidad
+--			SELECT MEMBER_NAME, MOVIE_NAME, MIN(MEMBER_RENTAL_DATE) AS first_rental_date
+--			FROM members
+--			JOIN members_movie_rental ON members.MEMBER_ID = members_movie_rental.MEMBER_ID
+--			JOIN nationalities ON SUBSTRING(MEMBER_PHONE, -1, 1) = CAST(nationalities.NATIONALITY_ID AS CHAR)
+--			JOIN movies ON members_movie_rental.MOVIE_ID = movies.MOVIE_ID
+--			GROUP BY MEMBER_NAME, MOVIE_NAME
+--			ORDER BY first_rental_date ASC;
