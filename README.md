@@ -15,6 +15,6 @@
 ## Semana 3
 - 7/10/24 Introduccion a Java Spring
 - 8/10/24 Java Spring avanzado
-- 10/10/24
+- 10/10/24 Ontimise
 - 11/10/24
 - 12/10/24
