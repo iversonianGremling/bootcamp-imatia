@@ -15,6 +15,16 @@
 ## Semana 3
 - 7/10/24 Introduccion a Java Spring
 - 8/10/24 Java Spring avanzado
-- 10/10/24 Ontimise introducción
-- 11/10/24 Ontimise avanzado
-- 12/10/24 Ontimise proyecto
+- 9/10/24 Ontimise introducción
+- 10/10/24 Ontimise avanzado
+- 11/10/24 Ontimise proyecto
+
+## Semana 4
+- 14/10/24 Trabajo en grupo en primera historia de usuario. Crear una funcionalidad basica en ontimize
+- 15/10/24 Debugging y comienzo de la segunda tarea, crear una funcionalidad avanzada en ontimize
+- 16/10/24 Debugging a segunda tarea
+- 17/10/24 Finalizar la segunda tarea y ayudar a otros grupos
+- 18/10/24 Juntar todas las historias de usuario del primer sprint del proyecto
+
+## Semana 5
+- 21/10/24
