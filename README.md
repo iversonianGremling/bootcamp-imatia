@@ -27,4 +27,5 @@
 - 18/10/24 Juntar todas las historias de usuario del primer sprint del proyecto
 
 ## Semana 5
-- 21/10/24
+- 21/10/24 Evaluación de sprint previo
+- 22/10/24 Planificación del próximo sprint
